@@ -34,7 +34,7 @@ public:
     QSize size;
     QPointer<Surface> parentSurface;
     PlasmaShellSurface::Role role;
-
+    PlasmaShellSurface::WindowType windowType;
     static PlasmaShellSurface *get(Surface *surface);
 
 private:
@@ -336,5 +336,107 @@ void PlasmaShellSurface::setPanelTakesFocus(bool takesFocus)
     org_kde_plasma_surface_set_panel_takes_focus(d->surface, takesFocus);
 }
 
+void PlasmaShellSurface::setVisible(bool show)
+{
+    org_kde_plasma_surface_set_visible(d->surface, show);
+}
+
+void PlasmaShellSurface::setWindowType(PlasmaShellSurface::WindowType window_type)
+{
+    Q_ASSERT(isValid());
+    uint32_t wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_APPLICATION;
+    switch (window_type) {
+    case PlasmaShellSurface::WindowType::TYPE_WALLPAPER:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_WALLPAPER;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_DESKTOP:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_DESKTOP;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_DIALOG:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_DIALOG;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_SYS_SPLASH:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_SYS_SPLASH;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_SEARCH_BAR:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_SEARCH_BAR;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_NOTIFICATION:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_NOTIFICATION;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_CRITICAL_NOTIFICATION:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_CRITICAL_NOTIFICATION;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_INPUT_METHOD:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_INPUT_METHOD;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_INPUT_METHOD_DIALOG:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_INPUT_METHOD_DIALOG;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_DND:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_DND;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_DOCK:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_DOCK;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_APPLICATION_OVERLAY:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_APPLICATION_OVERLAY;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_STATUS_BAR:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_STATUS_BAR;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_STATUS_BAR_PANEL:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_STATUS_BAR_PANEL;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_TOAST:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_TOAST;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_KEYGUARD:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_KEYGUARD;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_PHONE:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_PHONE;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_SYSTEM_DIALOG:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_SYSTEM_DIALOG;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_SYSTEM_ERROR:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_SYSTEM_ERROR;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_VOICE_INTERACTION:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_VOICE_INTERACTION;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_SCREENSHOT:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_SCREENSHOT;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_BOOT_PROGRESS:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_BOOT_PROGRESS;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_POINTER:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_POINTER;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_LAST_SYS_LAYER:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_LAST_SYS_LAYER;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_BASE_APPLICATION:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_BASE_APPLICATION;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_APPLICATION:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_APPLICATION;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_APPLICATION_STARTING:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_APPLICATION_STARTING;
+        break;
+    case PlasmaShellSurface::WindowType::TYPE_LAST_APPLICATION_WINDOW:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_LAST_APPLICATION_WINDOW;
+        break;
+    default:
+        wlType = ORG_KDE_PLASMA_SURFACE_WINDOW_TYPE_APPLICATION;
+        break;
+
+    }
+    org_kde_plasma_surface_set_window_type(d->surface, wlType);
+    d->windowType = window_type;
+}
 }
 }

@@ -381,5 +381,52 @@
         <arg name="skip" type="uint" summary="Boolean value that sets whether to skip the window switcher."/>
      </request>
 
+     <!-- JINGOS extend protocols -->
+     <request name="set_visible" since="5">
+        <description summary="set window visible">
+          Setting this vit will indicate that the window visible or not.
+        </description>
+        <arg name="visible" type="uint" summary="Boolean value that sets whether to be visible."/>
+     </request>
+
+      <enum name="window_type">
+        <entry name="wallpaper" value="2000"/>
+        <entry name="desktop" value="2001"/>
+        <entry name="dialog" value="2002"/>
+        <entry name="sys_splash" value="2003"/>
+        <entry name="search_bar" value="2004"/>
+        <entry name="notification" value="2005"/>
+        <entry name="critical_notification" value="2006"/>
+        <entry name="input_method" value="2007"/>
+        <entry name="input_method_dialog" value="2008"/>
+        <entry name="dnd" value="2009"/>
+        <entry name="dock" value="2010"/>
+        <entry name="status_bar" value="2011"/>
+        <entry name="status_bar_panel" value="2012"/>
+        <entry name="toast" value="2013"/>
+        <entry name="keyguard" value="2014"/>
+        <entry name="phone" value="2015"/>
+        <entry name="system_dialog" value="2016"/>
+        <entry name="system_error" value="2017"/>
+        <entry name="voice_interaction" value="2018"/>
+        <entry name="screenshot" value="2019"/>
+        <entry name="boot_progress" value="2020"/>
+        <entry name="pointer" value="2021"/>
+        <entry name="last_sys_layer" value="2099"/>
+        <entry name="base_application" value="1"/>
+        <entry name="application" value="2"/>
+        <entry name="application_starting" value="3"/>
+        <entry name="application_overlay" value="4"/>
+        <entry name="last_application_window" value="99"/>
+     </enum>
+     <!--jingos window type-->
+     <request name="set_window_type" since="5">
+             <description summary="set window type">
+          set window type.
+        </description>
+        <arg name="window_type" type="uint" summary="window typer."/>
+     </request>
+    <!-- JINGOS extend protocols end -->
+
   </interface>
 </protocol>

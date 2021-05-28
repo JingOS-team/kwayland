@@ -321,6 +321,41 @@ public:
     //KF6 TODO rename to make it generic
     void setPanelTakesFocus(bool takesFocus);
 
+    void setVisible(bool show);
+
+    enum class WindowType {
+        TYPE_WALLPAPER = 2000,
+        TYPE_DESKTOP = 2001,
+        TYPE_DIALOG = 2002,
+        TYPE_SYS_SPLASH = 2003,
+        TYPE_SEARCH_BAR = 2004,
+        TYPE_NOTIFICATION = 2005,
+        TYPE_CRITICAL_NOTIFICATION = 2006,
+        TYPE_INPUT_METHOD = 2007,
+        TYPE_INPUT_METHOD_DIALOG = 2008,
+        TYPE_DND = 2009,
+        TYPE_DOCK = 2010,
+        TYPE_STATUS_BAR = 2011,
+        TYPE_STATUS_BAR_PANEL = 2012,
+        TYPE_TOAST = 2013,
+        TYPE_KEYGUARD = 2014,
+        TYPE_PHONE = 2015,
+        TYPE_SYSTEM_DIALOG = 2016,
+        TYPE_SYSTEM_ERROR = 2017,
+        TYPE_VOICE_INTERACTION = 2018,
+        TYPE_SCREENSHOT = 2019,
+        TYPE_BOOT_PROGRESS = 2020,
+        TYPE_POINTER = 2021,
+        TYPE_LAST_SYS_LAYER = 2099,
+        TYPE_BASE_APPLICATION = 1,
+        TYPE_APPLICATION = 2,
+        TYPE_APPLICATION_STARTING = 3,
+        TYPE_APPLICATION_OVERLAY = 4,
+        TYPE_LAST_APPLICATION_WINDOW = 99,
+        TYPE_UNKNOW = -1
+    };
+
+    void setWindowType(WindowType window_type);
 Q_SIGNALS:
     /**
      * Emitted when the compositor hided an auto hiding panel.
