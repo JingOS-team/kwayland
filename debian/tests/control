@@ -1,0 +1,15 @@
+Tests: testsuite
+Depends: build-essential,
+         dbus-x11,
+         libpam-systemd,
+         qtwayland5,
+         weston,
+         xauth,
+         xvfb,
+         @,
+         @builddeps@
+Restrictions: build-needed
+
+Tests: acc
+Depends: dh-acc, exuberant-ctags, @
+Restrictions: allow-stderr

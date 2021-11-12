@@ -306,7 +306,7 @@ ecm_generate_export_header(KF5WaylandServer
     EXPORT_FILE_NAME
         KWayland/Server/kwaylandserver_export.h
     GROUP_BASE_NAME KF
-    VERSION ${KF5_VERSION}
+    VERSION ${KF_VERSION}
     DEPRECATED_BASE_VERSION 0
     DEPRECATION_VERSIONS 5.5 5.28 5.50 5.52 5.69 5.73
 )
@@ -314,7 +314,7 @@ ecm_generate_export_header(KF5WaylandServer
 # needs fixing of undeprecated API being still implemented using own deprecated API
 
 
-target_include_directories(KF5WaylandServer INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KWayland/Server>")
+target_include_directories(KF5WaylandServer INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KWayland/Server>")
 
 target_link_libraries(KF5WaylandServer
     PUBLIC Qt5::Gui
@@ -389,7 +389,7 @@ set(SERVER_LIB_HEADERS
 
 install(FILES
   ${SERVER_LIB_HEADERS}
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KWayland/Server COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KWayland/Server COMPONENT Devel
 )
 
 # make available to ecm_add_qch in parent folder
